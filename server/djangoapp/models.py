@@ -24,7 +24,9 @@ class CarModel(models.Model):
         ('SUV', 'SUV'),
         ('TRUCK', 'Truck'),
     ]
-    type = models.CharField(max_length=10, choices=CAR_TYPES, default='COMPACT')
+    type = models.CharField(
+        max_length=10, choices=CAR_TYPES, default='COMPACT'
+    )
     year = models.IntegerField(
         default=2023,
         validators=[
@@ -49,7 +51,9 @@ class CarModel(models.Model):
         ('DARK', 'Dark')
     ]
 
-    shade = models.CharField(max_length=10, choices=SHADES, default='', blank=True)
+    shade = models.CharField(
+        max_length=10, choices=SHADES, default='', blank=True
+    )
 
     def __str__(self):
         return self.name
