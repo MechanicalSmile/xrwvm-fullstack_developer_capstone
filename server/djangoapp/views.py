@@ -85,7 +85,7 @@ def registration(request):
         # Check if user already exists
         User.objects.get(username=username)
         username_exist = True
-    except Exception as e:
+    except Exception:
         # If not, simply log this is a new user
         logger.debug("{} is new user".format(username))
 
@@ -106,7 +106,7 @@ def registration(request):
             "status": "Authenticated"
         }
         return JsonResponse(data)
-    else :
+    else:
         data = {
             "userName": username,
             "error": "Already Registered"
@@ -114,7 +114,8 @@ def registration(request):
         return JsonResponse(data)
 
 
-# Update the `get_dealerships` render list of dealerships all by default, particular state if state is passed
+# Update the `get_dealerships` render list of dealerships all by default,
+# particular state if state is passed
 def get_dealerships(request, state="All"):
     if (state == "All"):
         endpoint = "/fetchDealers"
@@ -189,13 +190,13 @@ def add_review(request):
             return JsonResponse(
                 {
                     "status": 401,
-                 "message": f"Error: {e}"
+                     "message": f"Error: {e}"
                 }
             )
     else:
         return JsonResponse(
             {
                 "status": 403,
-             "message": "Unauthorized"
+                "message": "Unauthorized"
             }
         )
